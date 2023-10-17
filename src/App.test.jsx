@@ -25,7 +25,7 @@ describe("App", () => {
     expect(element).toBeInTheDocument();
   });
 
-  it("loads the current temperature as an an area label on the emoji", async () => {
+  it("loads the current temperature as an area label on the emoji", async () => {
     const element = await screen.findByLabelText("Current weather is warm");
 
     expect(element).toBeInTheDocument();
@@ -42,3 +42,4 @@ describe("App", () => {
     expect(element).toBeInTheDocument();
   });
 });
+
