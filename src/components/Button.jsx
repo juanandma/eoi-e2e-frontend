@@ -1,8 +1,8 @@
 import * as PropTypes from "prop-types";
 
 
-export const Button = ({ children, onClick, ...props }) => (
-  <button {...props} onClick={onClick}>
+export const Button = ({ children, ...props }) => (
+  <button {...props} >
     {children}
   </button>
 );
