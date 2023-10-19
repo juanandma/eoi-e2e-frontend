@@ -17,6 +17,7 @@ export const App = () => {
   const [toUnit, setToUnit] = useState(TemperatureUnit.CELSIUS);
   const { temperatureService } = useDependencies();
   const [country, setCountry] = useState(Object.keys(countries)[0]);
+  const [countryText, setCountryText] = useState(country);
 
   const result = convert(parseFloat(temperature), fromUnit, toUnit);
 
@@ -27,6 +28,7 @@ export const App = () => {
       }).then((temperature) => {
         setCurrentTemperature(temperature);
         setTemperature(temperature.toString());
+        setCountryText(country)
       });
   }
 
@@ -36,7 +38,7 @@ export const App = () => {
 
   return (
     <main>
-      <CurrentTemperature temperature={currentTemperature} />
+      <CurrentTemperature temperature={currentTemperature} country={countryText} />
       <form className="temperature-form" onSubmit={(e) => e.preventDefault()}>
         <SelectUnit
           id="temperature-from"
