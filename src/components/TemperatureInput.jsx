@@ -10,7 +10,7 @@ export const TemperatureInput = ({ onChange, unit, value }) => (
         id="degrees"
         type="text"
         value={value}
-        pattern="[0-9]*"
+        pattern="[0-9]*[.]?[0-9]*"
         onChange={(e) => onChange(e.target.value)}
         placeholder="Enter degrees"
       />

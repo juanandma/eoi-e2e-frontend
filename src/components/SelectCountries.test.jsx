@@ -19,5 +19,4 @@ describe('SelectCountries', () => {
 
     expect(screen.getByLabelText('Country')).toHaveValue(Object.keys(countries)[0]);
   });
-
 });

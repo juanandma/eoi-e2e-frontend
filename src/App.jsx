@@ -37,7 +37,7 @@ export const App = () => {
   return (
     <main>
       <CurrentTemperature temperature={currentTemperature} />
-      <form className="temperature-form">
+      <form className="temperature-form" onSubmit={(e) => e.preventDefault()}>
         <SelectUnit
           id="temperature-from"
           label="From"
@@ -62,7 +62,7 @@ export const App = () => {
           onChange={(temperature) => setTemperature(temperature)}
           unit={fromUnit}
         />
-        <Button type="submit" onClick={() => getTemperature()}>
+        <Button onClick={() => getTemperature()} type="submit">
           Get temperature
         </Button>
         <p className="result">
