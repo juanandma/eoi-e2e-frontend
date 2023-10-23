@@ -21,15 +21,19 @@ export const App = () => {
 
   const result = convert(parseFloat(temperature), fromUnit, toUnit);
 
-  const getTemperature = (ip = countries[country]) => {
-    temperatureService.getTemperature(
-      {
+  const getTemperature = async (ip = countries[country]) => {
+    try {
+      const temperature = await temperatureService.getTemperature({
         headers: { 'x-forwarded-for': ip },
-      }).then((temperature) => {
-        setCurrentTemperature(temperature);
-        setTemperature(temperature.toString());
-        setCountryText(country)
       });
+      setCurrentTemperature(temperature);
+      setTemperature(temperature.toString());
+      setCountryText(country)
+    } catch (error) {
+      console.table(error);
+      setCurrentTemperature(null);
+      setTemperature("");
+    }
   }
 
   useEffect(() => {

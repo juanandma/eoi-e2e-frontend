@@ -4,9 +4,6 @@ describe("app", () => {
   // eslint-disable-next-line no-undef
   beforeEach(() => {
     cy.visit("/");
-    cy.intercept("GET", "https:/localhost:3000/temperature", {
-      fixture: "temperature.json",
-    }).as("temperature");
   })
 
   it("fetches the current temperature in the selected unit", () => {
@@ -23,9 +20,23 @@ describe("app", () => {
     cy.setSelect("To", 'Celsius');
 
     cy.contains("°C").should("exist");
-    
+
     cy.setSelect("To", 'Fahrenheit');
 
     cy.contains("°F").should("exist");
+  })
+  describe("errors", () => {
+    it("shows an error message when the API returns an error", () => {
+      cy.intercept("GET", "/temperature", {
+        statusCode: 400,
+        body: {
+          error: {
+            message: "Error getting temperature",
+          },
+        },
+      });
+
+      cy.contains("Error getting temperature").should("exist");
+    });
   })
 })
