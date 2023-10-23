@@ -6,13 +6,13 @@ describe("app", () => {
     cy.visit("/");
   })
 
-  it("fetches the current temperature in the selected unit", () => {
+  it("gets the current temperature in the selected unit", () => {
     cy.setCountryUnitFromAndTo(Object.keys(countries)[0], "Celsius", "Kelvin");
 
     cy.contains("K").should("exist");
   });
 
-  it("fetches the current temperature and converts it to another unit", () => {
+  it("gets the current temperature and converts it to another unit", () => {
     cy.setCountryUnitFromAndTo(Object.keys(countries)[0], "Celsius", "Kelvin");
 
     cy.contains("K").should("exist");
@@ -24,6 +24,17 @@ describe("app", () => {
     cy.setSelect("To", 'Fahrenheit');
 
     cy.contains("°F").should("exist");
+  })
+  it("votes if the temperature of the getted country is correct", () => {
+    cy.setCountryUnitFromAndTo("Spain", "Celsius", "Kelvin");
+
+    cy.get("button").contains("Good").click();
+
+    cy.contains("Thanks for voting!").should("exist");
+
+    cy.visit("/votes");
+
+    cy.contains("Spain").should("exist");
   })
   describe("errors", () => {
     it("shows an error message when the API returns an error", () => {
