@@ -1,47 +1,42 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { TemperatureUnit, toSymbol } from "../models/TemperatureUnit.js";
 import { SelectUnit } from "../components/SelectUnit.jsx";
 import { TemperatureInput } from "../components/TemperatureInput.jsx";
 import { convert } from "../models/Temperature.js";
 import { CurrentTemperature } from "../components/CurrentTemperature.jsx";
-import { useDependencies } from "../hooks/useDependencies.js";
 import { Button } from "../components/Button.jsx";
 import { SelectCountries } from "../components/SelectCountries.jsx";
-import { countries } from "../enum/countries.js";
+import { useCountries } from "../hooks/useCountries.js";
 
 const TemperatureOldView = () => {
-  const [currentTemperature, setCurrentTemperature] = useState();
-  const [temperature, setTemperature] = useState("");
+  const { countries } = useCountries();
+  const [country, setCountry] = useState(countries[0]);
+  const [lastCountry, setLastCountry] = useState(country);
+  const [temperature, setTemperature] = useState(
+    lastCountry.temperature.toString(),
+  );
   const [fromUnit, setFromUnit] = useState(TemperatureUnit.CELSIUS);
   const [toUnit, setToUnit] = useState(TemperatureUnit.CELSIUS);
-  const { temperatureService } = useDependencies();
-  const [country, setCountry] = useState(Object.keys(countries)[0]);
-  const [countryText, setCountryText] = useState(country);
 
   const result = convert(parseFloat(temperature), fromUnit, toUnit);
 
-  const getTemperature = async (ip = countries[country]) => {
+  const getTemperature = async () => {
     try {
-      const temperature = await temperatureService.getTemperature({
-        headers: { 'x-forwarded-for': ip },
-      });
-      setCurrentTemperature(temperature);
-      setTemperature(temperature.toString());
-      setCountryText(country);
+      setLastCountry(country);
+      setTemperature(country.temperature.toString());
+      setFromUnit(TemperatureUnit.CELSIUS);
+      setToUnit(TemperatureUnit.CELSIUS);
     } catch (error) {
-      console.table(error);
-      setCurrentTemperature(null);
-      setTemperature("");
+      console.error("Error fetching temperature:", error);
     }
   };
 
-  useEffect(() => {
-    getTemperature();
-  }, []);
-
   return (
     <main>
-      <CurrentTemperature temperature={currentTemperature} country={countryText} />
+      <CurrentTemperature
+        temperature={lastCountry.temperature}
+        country={lastCountry.name}
+      />
       <form className="temperature-form" onSubmit={(e) => e.preventDefault()}>
         <SelectUnit
           id="temperature-from"

@@ -26,13 +26,13 @@ export class CountryService {
         }
     }
 
-    async addCountry(name) {
+    static async addCountry(name) {
         const response = await this.fetch(`${this.baseUrl}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({name}),
+            body: JSON.stringify({ name }),
         });
 
         if (!response.ok) {

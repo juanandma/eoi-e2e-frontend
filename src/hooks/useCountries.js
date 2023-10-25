@@ -3,6 +3,12 @@ import {CountryService} from "../services/CountryService.js";
 
 const countryService = new CountryService();
 
+const mockCountries = [
+    {id: "00000000-0000-0000-0000-000000000000", name: "Spain", temperature: 30},
+    {id: "00000000-0000-0000-0000-000000000001", name: "France", temperature: 20},
+    {id: "00000000-0000-0000-0000-000000000002", name: "Germany", temperature: 10},
+];
+
 export const useCountries = () => {
     const [countries, setCountries] = useState([]);
 
@@ -25,7 +31,7 @@ export const useCountries = () => {
     }
 
     return {
-        countries,
+        countries: mockCountries,
         deleteCountry,
         addCountry,
     }

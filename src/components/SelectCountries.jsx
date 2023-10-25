@@ -7,14 +7,19 @@ export const SelectCountries = ({ id, value, label, countries, onChange }) => (
     <label htmlFor={id}>{label}</label>
     <select
       id={id}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
+      value={value.name}
+      onChange={(e) => {
+        const country = countries.find(
+          (country) => country.name === e.target.value
+        );
+        onChange(country);
+      }}
     >
-      {Object.keys(countries).map((country) => (
-        <option key={country} value={country}>
-          {country}
-        </option>
-      ))}
+        {countries.map((country) => (
+            <option key={country.id} value={country.name}>
+                {country.name}
+            </option>
+        ))}
     </select>
   </div>
 );
@@ -22,7 +27,17 @@ export const SelectCountries = ({ id, value, label, countries, onChange }) => (
 SelectCountries.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  countries: PropTypes.object.isRequired,
+  countries: PropTypes.arrayOf(
+    PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        temperature: PropTypes.number.isRequired,
+    })
+    ).isRequired,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    temperature: PropTypes.number.isRequired,
+  })
 };
