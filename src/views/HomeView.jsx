@@ -8,7 +8,7 @@ import { Button } from "../components/Button.jsx";
 import { SelectCountries } from "../components/SelectCountries.jsx";
 import { useCountries } from "../hooks/useCountries.js";
 
-const TemperatureOldView = () => {
+const HomeView = () => {
   const { countries } = useCountries();
   const [country, setCountry] = useState(countries[0]);
   const [lastCountry, setLastCountry] = useState(country);
@@ -77,4 +77,4 @@ const TemperatureOldView = () => {
   );
 };
 
-export default TemperatureOldView;
+export default HomeView;
