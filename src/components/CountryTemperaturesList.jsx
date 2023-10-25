@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDependencies } from "../hooks/useDependencies";
-import { countries } from "../enum/countries";
 import { TemperatureUnit, toSymbol } from "../models/TemperatureUnit";
+import { useCountries } from "../hooks/useCountries";
 
 const CountryTemperaturesList = () => {
   const { temperatureService } = useDependencies();
   const [temperatures, setTemperatures] = useState({});
+  const { countries } = useCountries();
 
   useEffect(() => {
     const fetchTemperatures = async () => {
