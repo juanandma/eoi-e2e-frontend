@@ -6,12 +6,14 @@ import CountryView from "./views/CountryView.jsx";
 
 export const App = () => {
   return (
-    <BrowserRouter>
+    <div className="App">
+      <BrowserRouter>
       <Routes>
         <Route path="/" element={<TemperatureOldView />} />
         <Route path="/list" element={<CountryView />} />
       </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
+    </div>
   );
 };
 
