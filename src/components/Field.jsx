@@ -1,13 +1,12 @@
-import React from "react";
 
 export const Field = ({ label, children, htmlFor, error }) => {
   const id = htmlFor || getChildId(children);
   return (
-    <p errorState={!!error}>
-      {label && <p htmlFor={id}>{label}</p>}
+    <div>
+      {label && <label htmlFor={id}>{label}</label>}
       {children}
-      {!!error && <p role="alert">{error.message}</p>}
-    </p>
+      {!!error && <div role="alert">{error.message}</div>}
+    </div>
   );
 };
 

@@ -1,8 +1,9 @@
+
 export const FieldSet = ({ label, children }) => {
   return (
-    <p>
-      {label}
-      <p>{children}</p >
-    </p >
+    <div>
+      {label && <legend>{label}</legend>}
+      <div>{children}</div>
+    </div>
   );
 };
