@@ -50,4 +50,16 @@ describe("app", () => {
       cy.contains("Error getting temperature").should("exist");
     });
   })
+
+  describe("Add Country", () => {
+    it("shows shows a new country when saved", () => {
+      cy.visit('/CountryView')
+      cy.not.contains('Australia')
+      cy.visit('/FormView')
+      cy.get("#ip").type("1.17.4.0")
+      cy.get("button").contains("Save").click();
+      cy.visit('/CountryView')
+      cy.contains('Australia')
+    });
+  })
 })
