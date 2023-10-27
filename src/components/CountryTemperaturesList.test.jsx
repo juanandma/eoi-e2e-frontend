@@ -7,7 +7,7 @@ import countries from "../enum/countries";
 describe("CountryTemperaturesList", () => {
     it("renders a list of country temperatures", async () => {
         render(<CountryTemperaturesList />);
-        
+
 
         const countryList = screen.getByRole("list");
         expect(countryList).toBeInTheDocument();
