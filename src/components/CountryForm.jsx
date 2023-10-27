@@ -6,14 +6,14 @@ export const CountryForm = ({ addCountry }) => {
     ip: "",
   });
 
-  const handleSubmit = async (event) => {    
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Form ip: ", ip);
-    
+
+
     if (!isValid()) return;
     //Pasar al dominio?    
     setIp("");
-    console.log("Form ip valida");
+
     //try catch
     await addCountry(ip);
     //finally    
@@ -22,17 +22,16 @@ export const CountryForm = ({ addCountry }) => {
   function handleChange(event) {
     const ipActualizada = event.target.value;
 
-    console.log(ipActualizada)
-    
+
     //actualiza ip. Solo existe un campo.
     setIp(ipActualizada);
     //Error si la ip no es valida
-    setErrors(() => validate(ipActualizada));   
+    setErrors(() => validate(ipActualizada));
   }
 
   //Pasar al dominio?
   function validate(ip) {
-    let errors = { ip:  ""};
+    let errors = { ip: "" };
     if (ip.length === 0) {
       errors.ip = "Ip Address is required";
     }

@@ -59,3 +59,11 @@ main {
 .deleteButton {
   margin-left: min(max(10px, 15px), 20px);
 }
+
+.clearFilterButton {
+  margin-left: min(max(10px, 15px), 20px);
+  font-size: 12px;
+  color: #f0f0f0;
+  backgrounf-color: dimgray;
+  cursor: pointer;
+}
