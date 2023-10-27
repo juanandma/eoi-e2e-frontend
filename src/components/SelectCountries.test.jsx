@@ -11,12 +11,12 @@ describe('SelectCountries', () => {
       <SelectCountries
         id="countries"
         label="Country"
-        value={Object.keys(countries)[0]}
+        value={countries[0]}
         countries={countries}
         onChange={mockOnChange}
       />
     );
 
-    expect(screen.getByLabelText('Country')).toHaveValue(Object.keys(countries)[0]);
+    expect(screen.getByLabelText('Country')).toHaveValue(countries[0].name);
   });
 });

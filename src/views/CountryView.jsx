@@ -1,12 +1,12 @@
-import CountryTemperaturesList from "../components/CountryTemperaturesList";
-import { useCountries } from "../hooks/useCountries.js";
+import React from 'react';
+import CountryTemperaturesList from '../components/CountryTemperaturesList';
+import { useCountries } from '../hooks/useCountries';
 
 const CountryView = () => {
-  const { countries, deleteCountry, addCountry } = useCountries();
+  const { countries, deleteCountry } = useCountries();
 
   return (
     <div>
-      <h1>Country Temperatures List</h1>
       <CountryTemperaturesList
         countries={countries}
         deleteCountry={deleteCountry}
