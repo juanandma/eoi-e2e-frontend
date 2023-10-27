@@ -53,13 +53,13 @@ describe("app", () => {
 
   describe("Add Country", () => {
     it("shows shows a new country when saved", () => {
-      cy.visit('/CountryView')
-      cy.contains('Australia')
-      cy.visit('/FormView')
+      cy.visit('/list')
+      cy.contains('Australia').should("exist");
+      cy.visit('/form')
       cy.get("#ip").type("1.17.4.0")
       cy.get("button").contains("Save").click();
-      cy.visit('/CountryView')
-      cy.contains('Australia')
+      cy.visit('/list')
+      cy.contains('Australia').should("not.exist");
     });
   })
 })
