@@ -26,6 +26,7 @@ const CountryTemperaturesList = ({ countries = [], deleteCountry }) => {
         ))}
       </ul>
     </div>
+
   );
 };
 
