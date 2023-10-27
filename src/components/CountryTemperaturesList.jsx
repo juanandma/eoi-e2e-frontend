@@ -1,27 +1,19 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { toSymbol, TemperatureUnit } from '../models/TemperatureUnit';
+import MaxTemperatureFilter from './MaxTemperatureFilter';
+import DeleteCountryButton from './DeleteCountryButton';
 
 const CountryTemperaturesList = ({ countries = [], deleteCountry }) => {
   const [maxTemperature, setMaxTemperature] = useState(null);
 
-  const filteredCountries = maxTemperature
-    ? countries.filter((country) => country.temperature !== null && country.temperature <= maxTemperature)
+  const filteredCountries = maxTemperature !== null && maxTemperature !== ''
+    ? countries.filter((country) => country.temperature !== null && country.temperature <= (maxTemperature === 0 ? 0 : maxTemperature))
     : countries;
 
   return (
     <div className="countryList">
-      <div>
-        <label htmlFor="maxTemperature">Max Temperature Filter: </label>
-        <input
-          type="number"
-          id="maxTemperature"
-          value={maxTemperature || ''}
-          onChange={(e) => setMaxTemperature(Math.min(100, e.target.value))}
-          placeholder="None"
-          max={100}
-        />
-      </div>
+      <MaxTemperatureFilter maxTemperature={maxTemperature} setMaxTemperature={setMaxTemperature} />
       <ul>
         {filteredCountries.map((country) => (
           <li className="countryListItem" key={country.id}>
@@ -29,9 +21,7 @@ const CountryTemperaturesList = ({ countries = [], deleteCountry }) => {
             {country.temperature !== null
               ? `${country.temperature} ${toSymbol(TemperatureUnit.CELSIUS)}`
               : 'Not available'}
-            <button className="deleteButton" onClick={() => deleteCountry(country.id)}>
-              Delete
-            </button>
+            <DeleteCountryButton country={country} deleteCountry={deleteCountry} />
           </li>
         ))}
       </ul>
