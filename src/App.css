@@ -21,3 +21,41 @@ main {
   max-width: 500px;
   margin: 0 auto;
 }
+
+
+.header {
+  background-color: #242424;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.header__button {
+  background-color: #333;
+  padding: 10px;
+  margin: 0 10px;
+  color: antiquewhite;
+  text-decoration: none;
+}
+
+.header__button.active {
+  background-color: black;
+  font-weight:bolder;
+}
+
+.countryList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 66%;
+  margin: 0 auto;
+}
+
+.countryListItem {
+  list-style-type: none;
+  margin-top: 30px;
+}
+
+.deleteButton {
+  margin-left: min(max(10px, 15px), 20px);
+}
