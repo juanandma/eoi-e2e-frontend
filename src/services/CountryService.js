@@ -26,7 +26,7 @@ export class CountryService {
         }
     }
 
-    static async addCountry(name) {
+    async addCountry(name) {
         const response = await this.fetch(`${this.baseUrl}`, {
             method: "POST",
             headers: {
