@@ -52,7 +52,12 @@ describe("app", () => {
   })
 
   describe("Add Country", () => {
+
     it("shows shows a new country when saved", () => {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 014480b740e036147b16001f5df6fee0f2a8a556
       cy.visit('/list')
       cy.contains('Australia').should("exist");
       cy.visit('/form')
@@ -60,6 +65,11 @@ describe("app", () => {
       cy.get("button").contains("Save").click();
       cy.visit('/list')
       cy.contains('Australia').should("not.exist");
+<<<<<<< HEAD
+=======
+
+>>>>>>> 014480b740e036147b16001f5df6fee0f2a8a556
     });
+
   })
 })
