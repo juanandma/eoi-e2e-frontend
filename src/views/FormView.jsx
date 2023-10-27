@@ -1,10 +1,9 @@
 import React from "react";
-import { NewCountryForm } from "../components/NewCountryForm";
+import { CountryForm } from "../components/NewCountryForm";
 const CountryView = () => {
     return (
         <div>
-            <h1>Country Form</h1>
-            <NewCountryForm />
+            <CountryForm />
         </div>
     );
 };
